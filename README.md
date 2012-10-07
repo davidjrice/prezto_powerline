@@ -22,7 +22,7 @@ Powerline for [Prezto](http://github.com/sorin-ionescu/prezto) ZSH
     cd ~/.yadr && rake install
 
     # Install the prompt
-    curl https://raw.github.com/davidjrice/prezto-powerline/master/prompt_powerline_setup ~/.zsh.prompts/prompt_powerline_setup
+    curl https://raw.github.com/davidjrice/prezto_powerline/master/prompt_powerline_setup > ~/.zsh.prompts/prompt_powerline_setup
 
     # Enable
     echo "prompt powerline" > ~/.zsh.after/prompt.zsh
