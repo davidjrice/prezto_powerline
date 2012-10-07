@@ -8,6 +8,8 @@ Powerline for [Prezto](http://github.com/sorin-ionescu/prezto) ZSH
 * Time since last commit
 * RVM current ruby version / gemset
 
+![Example](https://github.com/davidjrice/prezto_powerline/blob/master/prompt.png)
+
 ## Dependencies
 
 * [skwp/dotfiles](http://github.com/skwp/dotfiles) *(YADR)*
