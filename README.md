@@ -8,7 +8,7 @@ Powerline for [Prezto](http://github.com/sorin-ionescu/prezto) ZSH
 * Time since last commit
 * RVM current ruby version / gemset
 
-![Example](https://github.com/davidjrice/prezto_powerline/blob/master/prompt.png)
+![Example](https://raw.github.com/davidjrice/prezto_powerline/master/prompt.png)
 
 ## Dependencies
 
