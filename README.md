@@ -36,3 +36,9 @@ This prompt is inspired by:
 * [robbl oh-my-zsh theme](http://github.com/robbl/oh-my-zsh-config)
 * [SKWP prezto theme](http://github.com/skwp/dotfiles/blob/master/zsh/prezto-themes/prompt_skwp_setup)
 
+## TODO
+
+* Moar configurable
+* Extract functions to Prezto modules?
+* Use better Prezto best practices...?
+* Handle NVM version info?
