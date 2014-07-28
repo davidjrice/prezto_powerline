@@ -166,8 +166,8 @@ function prompt_powerline_setup {
   POWERLINE_COLOR_FG_LIGHT_GRAY=%F{240}
   POWERLINE_COLOR_FG_WHITE=%F{255}
 
-  POWERLINE_SEPARATOR=$'\u2b80'
-  POWERLINE_R_SEPARATOR=$'\u2b82'
+  POWERLINE_SEPARATOR=$'\uE0B0'
+  POWERLINE_R_SEPARATOR=$'\uE0B2'
 
   POWERLINE_LEFT_A="%K{green}%F{white} %~ %k%f%F{green}%K{blue}"$POWERLINE_SEPARATOR
   POWERLINE_LEFT_B="%k%f%F{white}%K{blue} "'${vcs_info_msg_0_}'" %k%f%F{blue}%K{black}"$POWERLINE_SEPARATOR
