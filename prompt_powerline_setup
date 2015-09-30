@@ -17,17 +17,17 @@ ZSH_THEME_REP_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 # returns the time since last git commit
 function git_time_details() {
   # only proceed if there is actually a git repository
-  if `git rev-parse --git-dir > /dev/null 2>&1`; then
+  if $(git rev-parse --git-dir > /dev/null 2>&1); then
     # only proceed if there is actually a commit
     if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
       # get the last commit hash
-      # lc_hash=`git log --pretty=format:'%h' -1 2> /dev/null`
+      # lc_hash=$(git log --pretty=format:'%h' -1 2> /dev/null)
       # get the last commit time
-      lc_time=`git log --pretty=format:'%at' -1 2> /dev/null`
+      lc_time=$(git log --pretty=format:'%at' -1 2> /dev/null)
 
-      now=`date +%s`
+      now=$(date +%s)
       seconds_since_last_commit=$((now-lc_time))
-      lc_time_since=`time_since_commit $seconds_since_last_commit`
+      lc_time_since=$(time_since_commit $seconds_since_last_commit)
 
       echo "$lc_time_since"
     else
