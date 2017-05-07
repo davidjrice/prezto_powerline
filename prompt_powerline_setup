@@ -71,6 +71,17 @@ rvm_info_for_prompt() {
   fi
 }
 
+nodejs_info_for_prompt() {
+  if type "node" > /dev/null; then
+    local node_verison=$(node --version)
+    if [ -n "$node_verison" ]; then
+      echo "$node_verison"
+    fi
+  else
+    echo ""
+  fi
+}
+
 prompt_powerline_precmd() {
   # Check for untracked files or updated submodules since vcs_info doesn't.
   if [[ ! -z $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
@@ -81,7 +92,7 @@ prompt_powerline_precmd() {
   zstyle ':vcs_info:*:prompt:*' formats "${fmt_branch}"
 
   vcs_info 'prompt'
-  RVM_PRECMD_INFO=$(rvm_info_for_prompt)
+  RVM_PRECMD_INFO=$(nodejs_info_for_prompt)
 
   # zstyle ':prezto:module:ruby' rvm '%r'
 }
@@ -146,7 +157,7 @@ prompt_powerline_setup() {
 
   # SPLIT RVM PROMPT INFO
   # TODO: should assign this to local variable? somehow doesn't work correctly.
-  rvm_split=("${(s/@/)$(rvm_info_for_prompt)}")
+  rvm_split=("${(s/@/)$(nodejs_info_for_prompt)}")
 
   # if [ "$POWERLINE_RIGHT_B" = "" ]; then
     # POWERLINE_RIGHT_B=%D{%H:%M:%S}
@@ -176,7 +187,7 @@ prompt_powerline_setup() {
   PROMPT=$POWERLINE_LEFT_A$POWERLINE_LEFT_B$POWERLINE_LEFT_C
   # RPROMPT=$POWERLINE_COLOR_FG_WHITE$POWERLINE_R_SEPARATOR"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY$powerline_right_b "$POWERLINE_R_SEPARATOR"%f%k$POWERLINE_COLOR_BG_GRAY$POWERLINE_COLOR_FG_WHITE $powerline_right_a %f%k"
   # RPROMPT=$POWERLINE_COLOR_FG_WHITE$POWERLINE_R_SEPARATOR"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY"'$powerline_right_b'" "$POWERLINE_R_SEPARATOR"%f%k$POWERLINE_COLOR_BG_GRAY$POWERLINE_COLOR_FG_WHITE "'$powerline_right_a'" %f%k"
-  RPROMPT=$POWERLINE_COLOR_FG_WHITE$POWERLINE_R_SEPARATOR"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY"'$(rvm_info_for_prompt)'" "
+  RPROMPT=$POWERLINE_COLOR_FG_WHITE$POWERLINE_R_SEPARATOR"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY"'$(nodejs_info_for_prompt)'" "
 }
 
 prompt_powerline_setup "$@"
