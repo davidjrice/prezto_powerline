@@ -66,8 +66,6 @@ rvm_info_for_prompt() {
     if [ -n "$ruby_version" ]; then
       echo "$ruby_version"
     fi
-  else
-    echo ""
   fi
 }
 
@@ -144,19 +142,6 @@ prompt_powerline_setup() {
   zstyle ':vcs_info:*:prompt:*' formats       "${fmt_branch}"
   zstyle ':vcs_info:*:prompt:*' nvcsformats   ""
 
-  # SPLIT RVM PROMPT INFO
-  # TODO: should assign this to local variable? somehow doesn't work correctly.
-  rvm_split=("${(s/@/)$(rvm_info_for_prompt)}")
-
-  # if [ "$POWERLINE_RIGHT_B" = "" ]; then
-    # POWERLINE_RIGHT_B=%D{%H:%M:%S}
-    local powerline_right_b=$rvm_split[1]
-  # fi
-
-  # if [ "$POWERLINE_RIGHT_A" = "" ]; then
-    local powerline_right_a=$rvm_split[2]
-  # fi
-
   # Setup powerline style colouring
   POWERLINE_COLOR_BG_GRAY=%K{240}
   POWERLINE_COLOR_BG_LIGHT_GRAY=%K{240}
@@ -174,9 +159,25 @@ prompt_powerline_setup() {
   POWERLINE_LEFT_C=" %k%f%F{white}%K{black}"'$(git_time_details)'" %k%f%F{black}"$POWERLINE_SEPARATOR"%f "
 
   PROMPT=$POWERLINE_LEFT_A$POWERLINE_LEFT_B$POWERLINE_LEFT_C
-  # RPROMPT=$POWERLINE_COLOR_FG_WHITE$POWERLINE_R_SEPARATOR"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY$powerline_right_b "$POWERLINE_R_SEPARATOR"%f%k$POWERLINE_COLOR_BG_GRAY$POWERLINE_COLOR_FG_WHITE $powerline_right_a %f%k"
-  # RPROMPT=$POWERLINE_COLOR_FG_WHITE$POWERLINE_R_SEPARATOR"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY"'$powerline_right_b'" "$POWERLINE_R_SEPARATOR"%f%k$POWERLINE_COLOR_BG_GRAY$POWERLINE_COLOR_FG_WHITE "'$powerline_right_a'" %f%k"
-  RPROMPT=$POWERLINE_COLOR_FG_WHITE$POWERLINE_R_SEPARATOR"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY"'$(rvm_info_for_prompt)'" "
+  local ruby_version=$(rvm_info_for_prompt)
+  if [ -n "$ruby_version" ]; then
+    # SPLIT RVM PROMPT INFO
+    # TODO: should assign this to local variable? somehow doesn't work correctly.
+    rvm_split=("${(s/@/)$ruby_version}")
+
+    # if [ "$POWERLINE_RIGHT_B" = "" ]; then
+      # POWERLINE_RIGHT_B=%D{%H:%M:%S}
+      local powerline_right_b=$rvm_split[1]
+    # fi
+
+    # if [ "$POWERLINE_RIGHT_A" = "" ]; then
+      local powerline_right_a=$rvm_split[2]
+    # fi
+
+    # RPROMPT=$POWERLINE_COLOR_FG_WHITE$POWERLINE_R_SEPARATOR"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY$powerline_right_b "$POWERLINE_R_SEPARATOR"%f%k$POWERLINE_COLOR_BG_GRAY$POWERLINE_COLOR_FG_WHITE $powerline_right_a %f%k"
+    # RPROMPT=$POWERLINE_COLOR_FG_WHITE$POWERLINE_R_SEPARATOR"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY"'$powerline_right_b'" "$POWERLINE_R_SEPARATOR"%f%k$POWERLINE_COLOR_BG_GRAY$POWERLINE_COLOR_FG_WHITE "'$powerline_right_a'" %f%k"
+    RPROMPT=$POWERLINE_COLOR_FG_WHITE$POWERLINE_R_SEPARATOR"%f$POWERLINE_COLOR_BG_WHITE $POWERLINE_COLOR_FG_GRAY$ruby_version "
+  fi
 }
 
 prompt_powerline_setup "$@"
