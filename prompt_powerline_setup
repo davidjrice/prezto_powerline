@@ -19,7 +19,7 @@ git_time_details()() {
   # only proceed if there is actually a git repository
   if $(git rev-parse --git-dir > /dev/null 2>&1); then
     # only proceed if there is actually a commit
-    if [[ $(git log 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
+    if [[ $(git log -1 2>&1 > /dev/null | grep -c "^fatal: bad default revision") == 0 ]]; then
       # get the last commit hash
       # lc_hash=$(git log --pretty=format:'%h' -1 2> /dev/null)
       # get the last commit time
