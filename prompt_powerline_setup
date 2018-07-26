@@ -15,7 +15,7 @@ ZSH_THEME_REP_TIME_SINCE_COMMIT_LONG="%{$fg[red]%}"
 ZSH_THEME_REP_TIME_SINCE_COMMIT_NEUTRAL="%{$fg[cyan]%}"
 
 # returns the time since last git commit
-git_time_details()() {
+git_time_details() {
   # only proceed if there is actually a git repository
   if $(git rev-parse --git-dir > /dev/null 2>&1); then
     # only proceed if there is actually a commit
@@ -39,7 +39,7 @@ git_time_details()() {
 }
 
 # returns the time by given seconds
-time_since_commit()() {
+time_since_commit() {
   seconds_since_last_commit=$(($1 + 0))
 
   # totals
