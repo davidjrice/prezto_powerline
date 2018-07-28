@@ -6,7 +6,10 @@ Powerline for [Prezto](http://github.com/sorin-ionescu/prezto) ZSH
 * Single line prompt
 * Git branch info (current branch and modified states)
 * Time since last commit
-* RVM current ruby version / gemset
+* Current version of what is specified in ~/.zpreztorc
+```
+zstyle ':prezto:module:prompt:powerline:versioninfo:' command 'nvm version'
+```
 
 ![Example](https://raw.github.com/davidjrice/prezto_powerline/master/prompt.png)
 
@@ -57,4 +60,3 @@ This prompt is inspired by:
 * Moar configurable
 * Extract functions to Prezto modules?
 * Use better Prezto best practices...?
-* Handle NVM version info?
